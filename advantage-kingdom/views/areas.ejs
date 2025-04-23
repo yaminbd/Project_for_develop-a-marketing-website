@@ -1,0 +1,24 @@
+<%- include("partials/header") %>
+
+<main>
+  <h1>Explore Our Themed Areas</h1>
+  <p><strong><%= openHours %></strong></p>
+
+  <% areas.forEach(area => { %>
+    <div class="area">
+      <h2><%= area.name %></h2>
+      <p><%= area.description %></p>
+
+      <div class="attractions">
+        <h3>Attractions:</h3>
+        <% attractions.filter(a => a.area_id === area.id).forEach(attraction => { %>
+          <div class="attraction">
+            <strong><%= attraction.name %></strong>: <%= attraction.description %>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  <% }) %>
+</main>
+
+<%- include("partials/footer") %>
