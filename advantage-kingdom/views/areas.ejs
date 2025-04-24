@@ -6,8 +6,15 @@
 
   <% areas.forEach(area => { %>
     <div class="area">
-      <h2><%= area.name %></h2>
-      <p><%= area.description %></p>
+      <div class="area-header">
+        <!-- Log the image path -->
+        <p><%= area.image %></p> <!-- This will display the image path -->
+        <img src="<%= area.image %>" alt="<%= area.name %> Image" class="area-image" />
+        <div class="area-text">
+          <h2><%= area.name %></h2>
+          <p><%= area.description %></p>
+        </div>
+      </div>
 
       <div class="attractions">
         <h3>Attractions:</h3>

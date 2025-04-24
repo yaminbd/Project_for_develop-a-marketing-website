@@ -40,18 +40,24 @@ async function initDb() {
 
   const existing = await db.all("SELECT COUNT(*) AS count FROM areas;");
   if (existing[0].count === 0) {
-    await db.run("INSERT INTO areas (name, description) VALUES (?, ?)", [
-      "Dino Valley",
-      "Jurassic thrills with dinosaurs and fossil fun!"
-    ]);
-    await db.run("INSERT INTO areas (name, description) VALUES (?, ?)", [
-      "Space Zone",
-      "Launch into orbit with rockets and aliens!"
-    ]);
-    await db.run("INSERT INTO areas (name, description) VALUES (?, ?)", [
-      "Pirate Bay",
-      "Set sail for treasure and water adventures!"
-    ]);
+    await db.run("INSERT INTO areas (name, description, image) VALUES (?, ?, ?)", [
+        "Dino Valley",  // Name of the area
+        "Jurassic thrills with dinosaurs and fossil fun!",  // Description
+        "/img/dv1.jpg"  // Image path
+      ]);
+      
+    await db.run("INSERT INTO areas (name, description, image) VALUES (?, ?, ?)", [
+        "Space Zone",
+        "Launch into orbit with rockets and aliens!",
+        "/img/sp1.jpg"
+      ]);
+      
+    await db.run("INSERT INTO areas (name, description, image) VALUES (?, ?, ?)", [
+        "Pirate Bay",
+        "Set sail for treasure and water adventures!",
+        "/img/pb.jpg"
+      ]);
+      
 
     await db.run("INSERT INTO attractions (name, area_id, description) VALUES (?, ?, ?)", [
       "T-Rex Terror", 1, "High-speed coaster through a dinosaur jungle."
