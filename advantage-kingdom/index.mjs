@@ -10,6 +10,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 5000;
+app.use(express.static(path.join(__dirname, "public"))); // This line serves static files (images, CSS, JS) from 'public' folder
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -41,22 +42,23 @@ async function initDb() {
   const existing = await db.all("SELECT COUNT(*) AS count FROM areas;");
   if (existing[0].count === 0) {
     await db.run("INSERT INTO areas (name, description, image) VALUES (?, ?, ?)", [
-        "Dino Valley",  // Name of the area
-        "Jurassic thrills with dinosaurs and fossil fun!",  // Description
-        "/img/dv1.jpg"  // Image path
+        "Dino Valley", 
+        "Jurassic thrills with dinosaurs and fossil fun!", 
+        "/img/dv1.jpg" 
       ]);
       
-    await db.run("INSERT INTO areas (name, description, image) VALUES (?, ?, ?)", [
-        "Space Zone",
-        "Launch into orbit with rockets and aliens!",
+      await db.run("INSERT INTO areas (name, description, image) VALUES (?, ?, ?)", [
+        "Space Zone", 
+        "Launch into orbit with rockets and aliens!", 
         "/img/sp1.jpg"
       ]);
       
-    await db.run("INSERT INTO areas (name, description, image) VALUES (?, ?, ?)", [
-        "Pirate Bay",
-        "Set sail for treasure and water adventures!",
+      await db.run("INSERT INTO areas (name, description, image) VALUES (?, ?, ?)", [
+        "Pirate Bay", 
+        "Set sail for treasure and water adventures!", 
         "/img/pb.jpg"
       ]);
+      
       
 
     await db.run("INSERT INTO attractions (name, area_id, description) VALUES (?, ?, ?)", [
